@@ -141,6 +141,7 @@ jobs:
       - name: Upload Mono artifact
         uses: actions/upload-artifact@v4
         with:
+          retention-days: 3
           name: ${{ steps.artifact.outputs.name }}
           path: ${{ steps.artifact.outputs.path }}
 
