@@ -37,7 +37,7 @@ env:
 
 jobs:
   publish-release:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux]
     steps:
       - name: Resolve release metadata
         id: metadata
