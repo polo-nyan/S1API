@@ -35,6 +35,10 @@ env:
   THUNDERSTORE_CATEGORIES: libraries
   THUNDERSTORE_WEBSITE: https://github.com/ifBars/S1API
 
+concurrency:
+  group: '${{ github.workflow }}-${{ github.ref }}'
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   publish-release:
     runs-on: ubuntu-latest
