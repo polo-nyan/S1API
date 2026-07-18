@@ -21,7 +21,7 @@ on:
 
 jobs:
   build-il2cpp:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux]
     steps:
       - name: Checkout S1API
         uses: actions/checkout@v4
