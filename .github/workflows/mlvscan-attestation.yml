@@ -12,6 +12,10 @@ permissions:
 env:
   MLVSCAN_API_BASE_URL: ${{ vars.MLVSCAN_API_BASE_URL }}
 
+concurrency:
+  group: '${{ github.workflow }}-${{ github.ref }}'
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   attest-package:
     runs-on: ubuntu-latest
