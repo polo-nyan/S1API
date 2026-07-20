@@ -249,6 +249,7 @@ jobs:
 
       - name: Upload S1API Mono Artifact
         uses: actions/upload-artifact@v4
+        continue-on-error: true   # artifact quota must not fail the job
         with:
           name: S1API-Mono
           path: S1API/bin/MonoMelon/netstandard2.1/S1API.dll
