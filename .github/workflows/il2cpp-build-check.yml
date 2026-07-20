@@ -407,6 +407,7 @@ jobs:
 
       - name: Upload S1API Il2Cpp Artifact
         uses: actions/upload-artifact@v4
+        continue-on-error: true   # artifact quota must not fail the job
         with:
           name: S1API-Il2Cpp
           path: S1API/bin/Il2CppMelon/net6.0/S1API.dll
