@@ -8,6 +8,12 @@ on:
     branches: [ master, main, stable, beta, npc-prefabs ]
   pull_request:
     branches: [ master, main, stable, beta, npc-prefabs ]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - 'LICENSE'
+      - '.gitignore'
+      - '.editorconfig'
   workflow_dispatch:
     inputs:
       assembly_branch:
@@ -18,6 +24,10 @@ on:
         options:
           - main
           - beta
+
+concurrency:
+  group: '${{ github.workflow }}-${{ github.ref }}'
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   build-il2cpp:
@@ -409,6 +419,7 @@ jobs:
         uses: actions/upload-artifact@v4
         continue-on-error: true   # artifact quota must not fail the job
         with:
+          retention-days: 3
           name: S1API-Il2Cpp
           path: S1API/bin/Il2CppMelon/net6.0/S1API.dll
 

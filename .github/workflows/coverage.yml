@@ -5,6 +5,12 @@ on:
     branches: [ master, main, stable ]
   pull_request:
     branches: [ master, main, stable ]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - 'LICENSE'
+      - '.gitignore'
+      - '.editorconfig'
   workflow_dispatch:
     inputs:
       assembly_branch:
@@ -15,6 +21,10 @@ on:
         options:
           - main
           - beta
+
+concurrency:
+  group: '${{ github.workflow }}-${{ github.ref }}'
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   coverage:
